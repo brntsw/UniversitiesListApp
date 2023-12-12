@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.rxjavaRetrofitAdapter)
     implementation(libs.timber)
     implementation(libs.moshi)
+    implementation(libs.moshiKotlin)
     implementation(libs.moshiConverter)
     implementation(libs.room)
     implementation(libs.roomKtx)

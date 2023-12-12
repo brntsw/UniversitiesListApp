@@ -1,15 +1,24 @@
 package com.bruno.universitieslistapp.di
 
+import com.bruno.universitieslistapp.UniversitiesRepository
 import com.bruno.universitieslistapp.remote.UniversitiesRemoteImpl
 import com.bruno.universitieslistapp.remote.UniversitiesRemoteService
+import com.bruno.universitieslistapp.ui.UniversitiesListViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 fun getApplicationModule() = module {
     single { UniversitiesRemoteImpl(get()) }
+    single<UniversitiesRepository> {
+        UniversitiesRemoteImpl(get()) // or UniversitiesLocalImpl()
+    }
+    viewModel {
+        UniversitiesListViewModel(repository = get())
+    }
 }
 
 fun getNetworkModule() = module {

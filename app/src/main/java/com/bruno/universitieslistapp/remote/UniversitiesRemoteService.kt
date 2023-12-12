@@ -1,5 +1,7 @@
 package com.bruno.universitieslistapp.remote
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.core.Single
 import okhttp3.OkHttpClient
@@ -14,11 +16,15 @@ interface UniversitiesRemoteService {
 
     class Builder {
         fun makeUniversitiesService(okHttpClient: OkHttpClient) : UniversitiesRemoteService {
+            val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://universities.hipolabs.com/")
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build()
 
             return retrofit.create(UniversitiesRemoteService::class.java)
