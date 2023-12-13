@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "UniversitiesListApp"
 include(":app")
+include(":network-universities")

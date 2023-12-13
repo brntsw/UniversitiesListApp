@@ -1,24 +1,17 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
-    namespace = "com.bruno.universitieslistapp"
+    namespace = "com.bruno.network_universities"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.bruno.universitieslistapp"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildFeatures {
-        viewBinding = true
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,23 +37,16 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.rxandroid)
-    implementation(libs.rxjava)
     implementation(libs.retrofit)
     implementation(libs.okHttp)
     implementation(libs.okhttpLogging)
-    implementation(libs.rxjavaRetrofitAdapter)
-    implementation(libs.timber)
     implementation(libs.moshi)
     implementation(libs.moshiKotlin)
     implementation(libs.moshiConverter)
-    implementation(libs.room)
-    implementation(libs.roomKtx)
-    implementation(libs.roomRxjava)
+    implementation(libs.rxandroid)
+    implementation(libs.rxjava)
+    implementation(libs.rxjavaRetrofitAdapter)
     implementation(libs.koin)
-    implementation(project(":network-universities"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

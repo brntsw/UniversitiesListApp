@@ -1,9 +1,12 @@
 package com.bruno.universitieslistapp.di
 
+import android.app.Activity
+import com.bruno.network_universities.UniversitiesRemoteService
 import com.bruno.universitieslistapp.UniversitiesRepository
 import com.bruno.universitieslistapp.remote.UniversitiesRemoteImpl
-import com.bruno.universitieslistapp.remote.UniversitiesRemoteService
 import com.bruno.universitieslistapp.ui.UniversitiesListViewModel
+import com.bruno.universitieslistapp.ui.UniversitiesViewDelegate
+import com.bruno.universitieslistapp.ui.UniversitiesViewDelegateImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel

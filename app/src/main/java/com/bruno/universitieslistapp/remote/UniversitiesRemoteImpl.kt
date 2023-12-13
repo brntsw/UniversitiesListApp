@@ -1,5 +1,6 @@
 package com.bruno.universitieslistapp.remote
 
+import com.bruno.network_universities.UniversitiesRemoteService
 import com.bruno.universitieslistapp.UniversitiesRepository
 import com.bruno.universitieslistapp.University
 import com.bruno.universitieslistapp.mapper.mapToUniversities

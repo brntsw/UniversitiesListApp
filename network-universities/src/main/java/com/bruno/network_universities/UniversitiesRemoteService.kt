@@ -1,4 +1,4 @@
-package com.bruno.universitieslistapp.remote
+package com.bruno.network_universities
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

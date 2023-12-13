@@ -3,9 +3,8 @@ package com.bruno.universitieslistapp.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.bruno.universitieslistapp.UniversitiesRepository
-import com.bruno.universitieslistapp.University
+import com.bruno.universitieslistapp.mapper.mapToView
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -13,17 +12,20 @@ class UniversitiesListViewModel(private val repository: UniversitiesRepository) 
 
     private val disposable = CompositeDisposable()
 
-    private val _universities = MutableLiveData<List<University>>()
-    val universities: LiveData<List<University>> = _universities
+    private val _universities = MutableLiveData<List<UniversityView>>()
+    val universities: LiveData<List<UniversityView>> = _universities
 
     fun loadUniversities() {
         disposable.add(
             repository.getUniversities()
-            .subscribe({ universities ->
-                _universities.postValue(universities)
-            }, { error ->
-                Timber.e(error)
-            })
+                .map { universities ->
+                    universities.mapToView()
+                }
+                .subscribe({ universityViews ->
+                    _universities.postValue(universityViews)
+                           }, { error ->
+                               Timber.e(error)
+                           })
         )
     }
 
